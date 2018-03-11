@@ -20,7 +20,8 @@ File: Neuron.m
       Project2Part3.m
       Also see attached paper.
       
-iv- Multiplayer Network
+iv- Multiplayer Network. Implement a network with a variable number of hidden networks.
+
 
 
       
