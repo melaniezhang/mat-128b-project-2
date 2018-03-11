@@ -15,7 +15,11 @@ File: MNISTData.m
 iii- A neuron. Implement a neuron where F is given as the logistic function. Take the derivative and analyze the function.
 
 File: Neuron.m
-      NeuronEx1.m
-      NeuronEx2.m
+      Project2Part3.m
+      Also see attached paper.
+      
+iv- Multiplayer Network
+
+      
 
 
