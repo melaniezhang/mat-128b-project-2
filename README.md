@@ -11,7 +11,8 @@ Then, compute the average digit using command T(1,:) = mean(train0), T(2,:) = me
 we get the image shown on the book.
 
 File: MNISTData.m
-      ImageExample#2
+      ImageExample#2.png
+      ImageFor#2.png
 
 iii- A neuron. Implement a neuron where F is given as the logistic function. Take the derivative and analyze the function.
 
@@ -20,6 +21,7 @@ File: Neuron.m
       Also see attached paper.
       
 iv- Multiplayer Network
+
 
       
 
