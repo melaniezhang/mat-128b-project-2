@@ -20,8 +20,8 @@
 % the example below doesn't follow anything i just said above, it's just
 % what i wrote up rn to make sure my code works lol
 
-numLayers = 2;
-nodesPerLayer = 1000;
+numLayers = 3;
+nodesPerLayer = 400;
 
 [inputs, targets] = generateInsOuts("mnist_all.mat", 5000);
 weights = initializeWeights(numLayers, nodesPerLayer);
@@ -35,7 +35,7 @@ h = waitbar(0,sprintf('%.2f%% done', 0.0));
 trainingSessions = 100;
 for i = 1:trainingSessions
     weights = MultiLayerNetworkTrain(inputs, targets, weights, eta);
-    waitbar(i/trainingSessions,h,sprintf('%f%% done', i/trainingSessions));
+    waitbar(i/trainingSessions,h,sprintf('%.2f%% done', i/trainingSessions));
 end
 close(h);
 
