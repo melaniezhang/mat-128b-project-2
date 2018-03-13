@@ -20,25 +20,25 @@
 % the example below doesn't follow anything i just said above, it's just
 % what i wrote up rn to make sure my code works lol
 
-inputs = cell(1,3);
-targets = cell(1,3);
+numLayers = 2;
+nodesPerLayer = 13;
 
-inputs{1} = [1;2;3;4];
-inputs{2} = [1;0;2;3];
-inputs{3} = [2;0;1;3];
-
-targets{1} = [1;0;0;0];
-targets{2} = [0;1;0;0];
-targets{3} = [0;0;1;0];
-
-weights = cell(1,3);
-for i=1:3
-    weights{i} = rand([4 4]);
-end
-eta = 0.01;
+[inputs, targets] = generateInsOuts("mnist_all.mat", 1000);
+weights = initializeWeights(numLayers, nodesPerLayer);
+eta = 0.1;
 
 % this function returns the set of weights that should have been updated
 % through the training to maximize accuracy of prediction.
 % i need to write more code to implement the actual testing that will come
 % after the training. should b pretty straightforward
-MultiLayerNetworkTrain(inputs, targets, weights, eta)
+trainingSessions = 5;
+for i = 1:trainingSessions
+    weights = MultiLayerNetworkTrain(inputs, targets, weights, eta);
+end
+
+[testIns, testOuts] = generateTests("mnist_all.mat", 400);
+[avgError, stdError, numWrong] = MultiLayerNetworkTest(testIns, testOuts, weights);
+
+disp(avgError);
+disp(stdError);
+disp(numWrong);
