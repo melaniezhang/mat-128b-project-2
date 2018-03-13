@@ -5,8 +5,8 @@ function [ weights ] = MultiLayerNetworkTrain(inputs, targets, weights, eta)
 
 
 % EXPECTED INPUT FORMAT:
-% inputs: cell array of input vectors
-% targets: cell array of output vectors
+% inputs: cell array of input COLUMN vectors
+% targets: cell array of output COLUMN vectors
 % ---- inputs & targets should be same length, they are our training pairs ----
 % weights: cell array of weight matrices. make sure weights{1} has the same
 %           number of columns as each input has entries, and
@@ -39,7 +39,7 @@ for i=1:length(inputs)
     weights{numLayers} = weights{numLayers} + weightUpdate;
     
     % for other hidden layers
-    for j=numLayers-1:-1:2  % ... idk if the indexing is right here
+    for j=numLayers-1:-1:2
         delta = (delta * weights{j}.') .* OUT{j} .* (1-OUT{j});
         weightUpdate = eta * delta .* OUT{j-1};
         weights{j} = weights{j} + weightUpdate;
