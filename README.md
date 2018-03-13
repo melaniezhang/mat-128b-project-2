@@ -22,8 +22,8 @@ File: Neuron.m
       
 iv- Multiplayer Network. Implement a network with a variable number of hidden networks.
 
+vi.- Training the network
 
-
-      
+vii.- Dependence on parameters      
 
 
