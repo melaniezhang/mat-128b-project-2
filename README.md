@@ -21,12 +21,21 @@ File: Neuron.m
       Also see attached paper.
       
 iv- Multiplayer Network. Implement a network with a variable number of hidden networks.
+v.- Initializing the network
 
 File: MultiLayerNetwork.m
       Project2Part5.m
-      
+      (for both part 4 and 5)
+
 vi.- Training the network
 
+File: MultiLayerNetworkTest.m	
+      MultiLayerNetworkTrain.m	
+      generateInsOuts.m	
+      generateTests.m	
+      initializeWeights.m	
+      test_train.m
+      
 vii.- Dependence on parameters      
 
 
