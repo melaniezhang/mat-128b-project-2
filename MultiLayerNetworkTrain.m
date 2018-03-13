@@ -39,7 +39,7 @@ for i=1:length(inputs)
     weights{numLayers} = weights{numLayers} + weightUpdate;
     
     % for other hidden layers
-    for j=numLayers-1:-1:1  % ... idk if the indexing is right here
+    for j=numLayers-1:-1:2  % ... idk if the indexing is right here
         delta = (delta * weights{j}.') .* OUT{j} .* (1-OUT{j});
         weightUpdate = eta * delta .* OUT{j-1};
         weights{j} = weights{j} + weightUpdate;
