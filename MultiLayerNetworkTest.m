@@ -1,10 +1,10 @@
-function [averageError, stdError, numWrong] = MultiLayerNetworkTest(inputs, targets, weights)
+function [percentWrong, totalErrorRate] = MultiLayerNetworkTest(inputs, targets, weights)
 
 numLayers = length(weights);
 
-errors = zeros(length(inputs), 10);
+errors = zeros(1, 10);
 
-numWrong = 0;
+totalErrorRate = 0;
 
 for i=1:length(inputs)
     O = inputs{i};
@@ -14,7 +14,7 @@ for i=1:length(inputs)
         NET =  O * weights{j};  % "NET = Xw", where X is the ith matrix
                                % contained in InputWeights and w is the
                                % input vector
-        O = 1./(1.+exp(-NET));   % output is O = F(NET)
+        O = 1./(1 + exp(-NET));   % output is O = F(NET)
         OUT{j} = O;
     end
     
@@ -22,13 +22,14 @@ for i=1:length(inputs)
     
     % for last layer
     output = OUT{numLayers};
-    errors(i,:) = abs(output - targets{i});
     [Mout, Iout] = max(abs(output));
     [Mtarg, Itarg] = max(abs(targets{i}));
-    numWrong = numWrong + (Iout ~= Itarg);
+    errors(mod(i - 1,10) + 1) = errors(mod(i - 1,10) + 1) + (Iout ~= Itarg);
+    totalErrorRate = totalErrorRate + (Iout ~= Itarg);
 end
 
-averageError = mean(errors);
-stdError = std(errors);
+percentWrong = errors./(length(inputs)/10);
+percentWrong = percentWrong * 100;
 
+totalErrorRate = totalErrorRate * 100 / length(inputs) ; 
 end

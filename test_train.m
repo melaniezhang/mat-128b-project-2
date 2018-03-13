@@ -21,9 +21,9 @@
 % what i wrote up rn to make sure my code works lol
 
 numLayers = 2;
-nodesPerLayer = 13;
+nodesPerLayer = 1000;
 
-[inputs, targets] = generateInsOuts("mnist_all.mat", 1000);
+[inputs, targets] = generateInsOuts("mnist_all.mat", 5000);
 weights = initializeWeights(numLayers, nodesPerLayer);
 eta = 0.1;
 
@@ -31,14 +31,16 @@ eta = 0.1;
 % through the training to maximize accuracy of prediction.
 % i need to write more code to implement the actual testing that will come
 % after the training. should b pretty straightforward
-trainingSessions = 5;
+h = waitbar(0,sprintf('%.2f%% done', 0.0));
+trainingSessions = 100;
 for i = 1:trainingSessions
     weights = MultiLayerNetworkTrain(inputs, targets, weights, eta);
+    waitbar(i/trainingSessions,h,sprintf('%f%% done', i/trainingSessions));
 end
+close(h);
 
 [testIns, testOuts] = generateTests("mnist_all.mat", 400);
-[avgError, stdError, numWrong] = MultiLayerNetworkTest(testIns, testOuts, weights);
+[percentWrong, totalErrorRate] = MultiLayerNetworkTest(testIns, testOuts, weights);
 
-disp(avgError);
-disp(stdError);
-disp(numWrong);
+disp(percentWrong);
+disp(totalErrorRate);

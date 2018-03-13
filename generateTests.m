@@ -26,14 +26,10 @@ for i = 1:(10*numTests)
     train = rawTrainData{j};
     digit = train(ceil(i/10),:);
     digitimage = reshape(digit, 28, 28);
-    
-    parts = mat2cell(digitimage, [10, 8, 10], [10, 8, 10]);
-    
-    inputbuff = zeros(1, 9);
-    for k = 1:9
-       inputbuff(k) = (max(parts{k}(:)) > 0); 
-    end
-    inputs{i} = inputbuff;
+    digitimage = rot90(flipud(digitimage),-1);
+    digitimage = digitimage(:);
+    digitimage = (digitimage > 0);
+    inputs{i} = digitimage';
     
     targets{i} = 1:10;
     targets{i} = (targets{i} == j);

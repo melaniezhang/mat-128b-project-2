@@ -2,10 +2,10 @@
 function weights = initializeWeights(numLayers, nodesPerLayer)
 
 weights = cell(1,numLayers);
-weights{1} = -1 + 2*rand([9 nodesPerLayer]);
+weights{1} = -0.25 + 0.5*rand([784 nodesPerLayer]);
 for i=2:(numLayers-1)
-    weights{i} = -1 + 2*rand([nodesPerLayer nodesPerLayer]);
+    weights{i} = -0.25 + 0.5*rand([nodesPerLayer nodesPerLayer]);
 end
-weights{numLayers} = -1 + 2*rand([nodesPerLayer 10]);
+weights{numLayers} = -0.25 + 0.5*rand([nodesPerLayer 10]);
 
 end

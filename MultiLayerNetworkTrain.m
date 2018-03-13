@@ -24,7 +24,7 @@ for i=1:length(inputs)
         NET =  O * weights{j};  % "NET = Xw", where X is the ith matrix
                                % contained in InputWeights and w is the
                                % input vector
-        O = 1./(1.+exp(-NET));   % output is O = F(NET)
+        O = 1./(1 + exp(-NET));   % output is O = F(NET)
         OUT{j} = O;
     end
     
@@ -33,13 +33,13 @@ for i=1:length(inputs)
     % for last layer
     output = OUT{numLayers};
     error = output - targets{i};  % dont know if abs should be there
-    delta = output .* (1.-output) .* error;
-    weightUpdate = eta* OUT{numLayers-1}' * delta;
+    delta = output .* (1 - output) .* error;
+    weightUpdate = eta * OUT{numLayers-1}' * delta;
     weights{numLayers} = weights{numLayers} - weightUpdate;
     
     % for other hidden layers
     for j=numLayers-1:-1:2
-        delta = (delta * weights{j+1}') .* OUT{j} .* (1.-OUT{j});
+        delta = (delta * weights{j+1}') .* OUT{j} .* (1 - OUT{j});
         weightUpdate = eta * OUT{j-1}' * delta;
         weights{j} = weights{j} - weightUpdate;
     end
