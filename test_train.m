@@ -22,20 +22,22 @@
 
 numLayers = 3;
 nodesPerLayer = 400;
-
-[inputs, targets] = generateInsOuts("mnist_all.mat", 5000);
-weights = initializeWeights(numLayers, nodesPerLayer);
 eta = 0.1;
+
+setsOfDigitsToTrainOn = 1000;
+trainingSessions = 100;
+
+[inputs, targets] = generateInsOuts("mnist_all.mat", setsOfDigitsToTrainOn);
+weights = initializeWeights(numLayers, nodesPerLayer);
 
 % this function returns the set of weights that should have been updated
 % through the training to maximize accuracy of prediction.
 % i need to write more code to implement the actual testing that will come
 % after the training. should b pretty straightforward
 h = waitbar(0,sprintf('%.2f%% done', 0.0));
-trainingSessions = 100;
 for i = 1:trainingSessions
     weights = MultiLayerNetworkTrain(inputs, targets, weights, eta);
-    waitbar(i/trainingSessions,h,sprintf('%.2f%% done', i/trainingSessions));
+    waitbar(i/trainingSessions,h,sprintf('%.2f%% done', i*100/trainingSessions));
 end
 close(h);
 
